@@ -9,6 +9,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * トップページ
+ * @author maedatatsuya
+ *
+ */
 public class TopActivity extends Activity implements View.OnClickListener{
 
     private Button button1;
@@ -45,9 +50,8 @@ public class TopActivity extends Activity implements View.OnClickListener{
         return true;
     }
 
-	@Override
 	public void onClick(View v) {
-		
+		// TODO Auto-generated method stub
 		int searchFlg = 0;
 		
 		if(v == button1){
@@ -66,6 +70,6 @@ public class TopActivity extends Activity implements View.OnClickListener{
 		Intent intent = new Intent(TopActivity.this, GetListActivity.class);
 		intent.putExtra("searchFlg", searchFlg);
 		startActivity(intent);
+		
 	}
-    
 }

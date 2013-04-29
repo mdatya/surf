@@ -8,8 +8,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.surf.R;
+import com.surf.entity.SearchResult;
 import com.surf.util.HttpClient;
+import com.surf.util.ResponseParser;
 
+/**
+ * 指定したエリアのツイートを一覧表示するクラス
+ * @author maedatatsuya
+ *
+ */
 public class GetListActivity extends Activity implements View.OnClickListener{
 
 	TextView jsonText;
@@ -23,7 +30,9 @@ public class GetListActivity extends Activity implements View.OnClickListener{
         jsonText = (TextView) findViewById(R.id.jsonText);
         int searchFlg = getIntent().getIntExtra("searchFlg", 0);
         
-        new GetListTask().execute(searchFlg);
+        //TODO: クエリ生成
+        
+        new GetListTask().execute();
     }
 
 
@@ -34,13 +43,23 @@ public class GetListActivity extends Activity implements View.OnClickListener{
         return true;
     }
 
-
-	@Override
-	public void onClick(View v) {
-		
-	}
+    /**
+     * 取得したデータを表示します
+     * @param result
+     * @return
+     */
+    private boolean setContent(SearchResult result){
+    	
+    	
+    	return true;
+    }
 	
-	private class GetListTask extends AsyncTask<Integer, Void, byte[]>{
+	/**
+	 * ツイートの検索を行うタスク
+	 * @author maedatatsuya
+	 *
+	 */
+	private class GetListTask extends AsyncTask<Void, Void, SearchResult>{
 
 		@Override
 		protected void onPreExecute(){
@@ -48,16 +67,27 @@ public class GetListActivity extends Activity implements View.OnClickListener{
 		}
 		
 		@Override
-		protected byte[] doInBackground(Integer... params) {
-			String urlStr = "http://search.twitter.com/search.json?q=%E8%BE%BB%E5%A0%82%20%E6%B3%A2";
-			byte[] data = HttpClient.getByteArrayFromURL(urlStr); 
-			return data;
+		protected SearchResult doInBackground(Void... params) {
+			String urlStr = "https://search.twitter.com/search.json?q=%E6%B3%A2%20%E6%B9%98%E5%8D%97&include_entities=true&result_type=recent&rpp=50";
+			
+			//http通信
+			byte[] data = HttpClient.getByteArrayFromURL(urlStr);
+			
+			//レスポンスをパース
+			SearchResult result = ResponseParser.getSearchResult(data);
+			
+			return result;
 		}
 		
 		@Override
-		protected void onPostExecute(byte[] result){
-			jsonText.setText(result.toString());
+		protected void onPostExecute(SearchResult result){
+			setContent(result);
 		}
+	}
+
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

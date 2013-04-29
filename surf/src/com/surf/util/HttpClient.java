@@ -5,6 +5,11 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * HTTP通信を行うクラス
+ * @author maedatatsuya
+ *
+ */
 public class HttpClient {
 	public static byte[] getByteArrayFromURL(String strUrl) {
         byte[] byteArray = new byte[1024];
