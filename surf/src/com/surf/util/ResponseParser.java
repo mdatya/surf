@@ -67,7 +67,7 @@ public class ResponseParser {
 	public static SearchResult getSearchResult(byte[] data){
 		
 		SearchResult searchResult = null;
-		List<TwitStatus> results = null;
+		ArrayList<TwitStatus> results = null;
 		TwitStatus twitStatus = null;
 		Geo geo = null;
 		List<Map<String, String>> urlMapList = null;

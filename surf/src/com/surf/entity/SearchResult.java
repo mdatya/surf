@@ -1,5 +1,6 @@
 package com.surf.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class SearchResult {
 	private int page;
 	private String query;
 	private int resultsPerPage;
-	private List<TwitStatus> results;
+	private ArrayList<TwitStatus> results;
 	
 	public double getProcessingTime() {
 		return processingTime;
@@ -81,10 +82,10 @@ public class SearchResult {
 	public void setResultsPerPage(int resultsPerPage) {
 		this.resultsPerPage = resultsPerPage;
 	}
-	public List<TwitStatus> getResults() {
+	public ArrayList<TwitStatus> getResults() {
 		return results;
 	}
-	public void setResults(List<TwitStatus> results) {
+	public void setResults(ArrayList<TwitStatus> results) {
 		this.results = results;
 	}
 }

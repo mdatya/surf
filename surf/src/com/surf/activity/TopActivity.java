@@ -67,7 +67,7 @@ public class TopActivity extends Activity implements View.OnClickListener{
 		}else if(v == button6){
 			searchFlg = 6;
 		}
-		Intent intent = new Intent(TopActivity.this, GetListActivity.class);
+		Intent intent = new Intent(TopActivity.this, InfoListActivity.class);
 		intent.putExtra("searchFlg", searchFlg);
 		startActivity(intent);
 		

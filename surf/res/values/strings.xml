@@ -9,5 +9,7 @@
     <string name="chigasaki">茅ヶ崎</string>
     <string name="hiratsuka">平塚</string>
     <string name="oiso">大磯</string>
+    
+    <string name="image_desc">プロフィール画像</string>
 
 </resources>

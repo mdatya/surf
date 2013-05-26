@@ -1,15 +1,15 @@
 package com.surf.activity;
 
-import android.app.Activity;
+import android.app.ListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 
 import com.surf.R;
 import com.surf.entity.SearchResult;
 import com.surf.util.HttpClient;
+import com.surf.util.InfoListAdapter;
 import com.surf.util.ResponseParser;
 
 /**
@@ -17,20 +17,16 @@ import com.surf.util.ResponseParser;
  * @author maedatatsuya
  *
  */
-public class GetListActivity extends Activity implements View.OnClickListener{
-
-	TextView jsonText;
-	String json = "";
+public class InfoListActivity extends ListActivity implements View.OnClickListener{
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_getlist);
+//        setContentView(R.layout.activity_info_list);
         
-        jsonText = (TextView) findViewById(R.id.jsonText);
         int searchFlg = getIntent().getIntExtra("searchFlg", 0);
         
-        //TODO: クエリ生成
+        // TODO クエリ生成
         
         new GetListTask().execute();
     }
@@ -49,11 +45,14 @@ public class GetListActivity extends Activity implements View.OnClickListener{
      * @return
      */
     private boolean setContent(SearchResult result){
+//    	ListView listView = (ListView) findViewById(R.id.list_view);
     	
+    	InfoListAdapter adapter = new InfoListAdapter(this, R.layout.info_row, result.getResults());  
+    	setListAdapter(adapter);
     	
     	return true;
     }
-	
+
 	/**
 	 * ツイートの検索を行うタスク
 	 * @author maedatatsuya
@@ -63,7 +62,7 @@ public class GetListActivity extends Activity implements View.OnClickListener{
 
 		@Override
 		protected void onPreExecute(){
-			
+			// TODO くるくる回す
 		}
 		
 		@Override
