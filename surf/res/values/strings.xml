@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Menu -->
     <string name="app_name">湘南波情報</string>
     <string name="action_settings">Settings</string>
     <string name="kamakura">鎌倉</string>
@@ -9,6 +10,12 @@
     <string name="chigasaki">茅ヶ崎</string>
     <string name="hiratsuka">平塚</string>
     <string name="oiso">大磯</string>
+    
+    <!-- Twitter Setting -->
+    <string name="consumer_key">AbKoOwMVguMRtLKYGuEZJw</string>
+    <string name="consumer_secret">U2c6XsH3EXVbMur67rH04pahK1qsA8jnVzNbOI9ytOM</string>
+    <string name="access_token">95044054-cPinD4ipKibqehJp57BiaO1UVFuxQWGnx0PAc5ow</string>
+    <string name="access_token_secret">NvtvbTxKSv6hJkQlMdHeKqIkw8U0Q7MdJh9j0LNTFU</string>
     
     <string name="image_desc">プロフィール画像</string>
 

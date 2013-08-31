@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 
+import twitter4j.Status;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,18 +19,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.surf.R;
-import com.surf.entity.TwitStatus;
 
-public class InfoListAdapter extends ArrayAdapter<TwitStatus> {
+public class InfoListAdapter extends ArrayAdapter<Status> {
 
 	private Context context;
-	private ArrayList<TwitStatus> items;  
+	private List<Status> items;  
 	private LayoutInflater inflater;
 	
-	public InfoListAdapter(Context context, int textViewResourceId, ArrayList<TwitStatus> items) {
+	public InfoListAdapter(Context context, int textViewResourceId, List<Status> items) {
 		super(context, textViewResourceId, items);
 		this.context = context;
-		this.items = (ArrayList<TwitStatus>) items;
+		this.items = (List<Status>)items;
 		this.inflater = (LayoutInflater) context  
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
@@ -43,7 +43,7 @@ public class InfoListAdapter extends ArrayAdapter<TwitStatus> {
 			view = inflater.inflate(R.layout.info_row, null);
 		}
 		// 表示するデータの取得
-		TwitStatus item = (TwitStatus)items.get(position);
+		Status item = (Status)items.get(position);
 		
 		// 表示領域を取得
 		ImageView profImgView = (ImageView)view.findViewById(R.id.profile_image);
@@ -52,7 +52,7 @@ public class InfoListAdapter extends ArrayAdapter<TwitStatus> {
 		TextView statusView = (TextView)view.findViewById(R.id.status);
 		
 		// ビューにセット
-		String profImgUrl = item.getProfImgUrl();
+		String profImgUrl = item.getUser().getProfileImageURL();
 		try{
 			profImgView.setTag(profImgUrl);
             // AsyncTaskは１回しか実行できない為、毎回インスタンスを生成
@@ -62,8 +62,8 @@ public class InfoListAdapter extends ArrayAdapter<TwitStatus> {
             // TODO エラー時の処理
         }
 		
-		userNameView.setText(item.getFromUserName());
-		userIdView.setText(item.getFromUser());
+		userNameView.setText(item.getUser().getScreenName());
+		userIdView.setText(item.getUser().getName());
 		statusView.setText(item.getText());
 		
 		return view;
